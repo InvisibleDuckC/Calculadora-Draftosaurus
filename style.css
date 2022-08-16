@@ -1,0 +1,164 @@
+body{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+main{
+    display: flex;
+    border: 5px solid black;
+    flex-direction: row;
+    justify-content: center;
+    width: 940px;
+    align-items: center;
+}
+
+.cafeteria{
+    border: 5px solid red;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.baños{
+    border: 5px solid blue;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.iguales{
+    border: 5px solid black ;
+    background: green;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.trio{
+    border: 5px solid black ;
+    background: yellow;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.parejas{
+    border: 5px solid black ;
+    background: orange;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.mvp{
+    border: 5px solid black ;
+    background: cyan;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.dispares{
+    border: 5px solid black ;
+    background: purple;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.unico{
+    border: 5px solid black ;
+    background: maroon;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.campo-0, .campo-1, .campo-2, .campo-3, .campo-4, .campo-5{
+    width: 90%;
+    height: 50%;
+    border: 5px solid black;
+    background: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.agregar-dino{
+    display: flex;
+    width: 90%;
+    height: 50%;
+    flex-direction: row;
+    justify-content: center;
+    border: 1px solid black;
+}
+
+.agregar-dino button{
+    width: 100%;
+}
+
+.confirmar-valor{
+    display: flex;
+    width: 100%;
+    height: 50%;
+    flex-direction: row;
+    justify-content: center;
+    border: 1px solid black;
+}
+
+.confirmar-valor button{
+    width: 50%;
+}
+
+.triceratops{
+    background: yellow;
+}
+.apatosaurio{
+    background: green;
+}
+.braquiosaurio{
+    background: plum;
+}
+.espinosaurio{
+    background: orange;
+}
+.t-rex{
+    background: red;
+}
+.estegosaurio{
+    background: rgb(0, 157, 255);
+}
+.invalid{
+    background: gray;
+}
+
+.dino-agregado{
+    width: 10%;
+    height: 30%;
+    border: 2px solid black;
+}
+
+footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+.bloque-puntaje{
+    border: 2px solid green;
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+}
+
