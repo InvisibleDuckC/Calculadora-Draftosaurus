@@ -4,14 +4,14 @@ let parejas = [];
 let mvp = [];
 let dispares = [];
 let unico = [];
-let nameConjunto = ["iguales","trio","parejas","mvp","dispares","unico"];
-let dinosaurios = ["triceratops","apatosaurio","braquiosaurio","espinosaurio","t-rex","estegosaurio"];
+const nameConjunto = ["iguales","trio","parejas","mvp","dispares","unico"];
+const dinosaurios = ["triceratops","apatosaurio","braquiosaurio","espinosaurio","t-rex","estegosaurio"];
 var aplicaValor = false;
 let conjunto = [[],[],[],[],[],[]];
 let interruptor = false;
 
-let botonesAgregar = document.getElementById("agregar-mvp");
-let botonesConfirmar = document.getElementsByClassName("confirmar-valor");
+const botonesAgregar = document.getElementById("agregar-mvp");
+const botonesConfirmar = document.getElementsByClassName("confirmar-valor");
 
 /// botones zona iguales
 const IgContenedor = document.querySelector(".iguales .agregar-dino")
@@ -50,17 +50,15 @@ function agregarDino(lugar,dino){
     nuevoBoton.classList.add("invalid");
     conjunto[lugar].push(dinosaurios[dino]);
     console.log(conjunto);
-    if (lugar == 3){
-        interruptor = true;
-    }
-    agregarDinoMapa(lugar,dino)
-    controladorBotones();
     if(lugar == 0){
         let momentaneo = IgArray[dino]
         for (let i = 0; i < IgArray.length;i++){
             IgArray[i].remove();
         }
         IgContenedor.appendChild(momentaneo)
+    }
+    if (lugar == 3){
+        interruptor = true;
     }
     if(lugar == 4){
         DesArray[dino].remove();
@@ -72,6 +70,8 @@ function agregarDino(lugar,dino){
         }
         UniContenedor.appendChild(nuevoBoton)
     }
+    agregarDinoMapa(lugar,dino)
+    controladorBotones();
 
 }
 

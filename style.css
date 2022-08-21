@@ -26,6 +26,7 @@ main{
     border: 5px solid blue;
     display: flex;
     flex-direction: column;
+    justify-content:center;
     width: 50%;
 }
 
@@ -34,7 +35,7 @@ main{
     background: green;
     height: 100px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
 }
@@ -43,7 +44,7 @@ main{
     background: yellow;
     height: 100px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
 }
@@ -52,7 +53,7 @@ main{
     background: orange;
     height: 100px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
 }
@@ -61,7 +62,7 @@ main{
     background: cyan;
     height: 100px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
 }
@@ -70,7 +71,7 @@ main{
     background: purple;
     height: 100px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
 }
@@ -79,15 +80,27 @@ main{
     background: maroon;
     height: 100px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
 }
 
-.campo-0, .campo-1, .campo-2, .campo-3, .campo-4, .campo-5{
+.icono.zona{
+    width: 10%;
+}
+
+.top-section{
+    display: flex;
+    flex-direction: column;
+    border: 5px solid olivedrab;
     width: 90%;
-    height: 50%;
-    border: 5px solid black;
+    height: 100%;
+}
+
+.campo-0, .campo-1, .campo-2, .campo-3, .campo-4, .campo-5{
+    width: 100%;
+    height: 100%;
+/*     border: 5px solid black; */
     background: white;
     display: flex;
     justify-content: space-around;
@@ -96,7 +109,7 @@ main{
 
 .agregar-dino{
     display: flex;
-    width: 90%;
+    width: 100%;
     height: 50%;
     flex-direction: row;
     justify-content: center;
@@ -105,6 +118,8 @@ main{
 
 .agregar-dino button{
     width: 100%;
+    border-radius: 15px;
+    margin: 0 5px;
 }
 
 .confirmar-valor{
@@ -118,6 +133,7 @@ main{
 
 .confirmar-valor button{
     width: 50%;
+    border-radius: 15px;
 }
 
 .triceratops{
@@ -161,4 +177,10 @@ footer{
     display: flex;
     justify-content: space-around;
 }
+
+.cartel{
+    width: 50px;
+    display: flex;
+}
+
 
