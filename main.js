@@ -1,13 +1,14 @@
 let iguales = [];
 let trio = [];
 let parejas = [];
+let rio = [];
 let mvp = [];
 let dispares = [];
 let unico = [];
-const nameConjunto = ["iguales","trio","parejas","mvp","dispares","unico"];
+const nameConjunto = ["iguales","trio","parejas","rio","mvp","dispares","unico"];
 const dinosaurios = ["triceratops","apatosaurio","braquiosaurio","espinosaurio","t-rex","estegosaurio"];
 var aplicaValor = false;
-let conjunto = [[],[],[],[],[],[]];
+let conjunto = [[],[],[],[],[],[],[]];
 let interruptor = false;
 
 const botonesAgregar = document.getElementById("agregar-mvp");
@@ -56,15 +57,20 @@ function agregarDino(lugar,dino){
             IgArray[i].remove();
         }
         IgContenedor.appendChild(momentaneo)
+        if (conjunto[0].length == 6){
+            console.log("Estoy lleno")
+            IgArray[0].remove();
+            IgContenedor.appendChild(nuevoBoton);
+        }
     }
-    if (lugar == 3){
+    if (lugar == 4){
         interruptor = true;
     }
-    if(lugar == 4){
+    if(lugar == 5){
         DesArray[dino].remove();
         DesContenedor.appendChild(nuevoBoton)
     }
-    if(lugar == 5){
+    if(lugar == 6){
         for (let i = 0; i < UniArray.length;i++){
             UniArray[i].remove();
         }
@@ -102,17 +108,19 @@ function calcularPuntaje(conjunto){
     iguales = conjunto[0];
     trio = conjunto[1];
     parejas = conjunto[2];
-    mvp = conjunto[3];
-    dispares = conjunto[4];
-    unico = conjunto[5];
+    rio = conjunto[3];
+    mvp = conjunto[4];
+    dispares = conjunto[5];
+    unico = conjunto[6];
     let puntPares = calcularPuntajeIguales(iguales);
     let puntTrio = calcularPuntajeTrio(trio);
     let puntParejas = calcularPuntajeParejas(parejas);
+    let puntRio = calcularPuntajeRio(rio);
     let puntMvp = calcularPuntajeMvp(mvp, aplicaValor);
     let puntDispares = calcularPuntajeDispares(dispares);
     let puntUnico = calcularPuntajeUnico(conjunto, unico);
 
-    let puntajeTotal = puntPares+puntTrio+puntParejas+puntMvp+puntDispares+puntUnico;
+    let puntajeTotal = puntPares+puntTrio+puntParejas+puntMvp+puntDispares+puntUnico+puntRio;
     
     return puntajeTotal;
 }
@@ -210,6 +218,11 @@ function calcularPuntajeParejas(parejas){
     contador += Math.floor(parseInt(valor6/2));
 
     return (contador*5);
+}
+
+function calcularPuntajeRio(rio){
+    puntos = rio.length;
+    return puntos
 }
 
 function calcularPuntajeMvp(mvp, aplicaValor){

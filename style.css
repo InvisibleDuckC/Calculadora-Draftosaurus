@@ -12,73 +12,89 @@ main{
     flex-direction: row;
     justify-content: center;
     width: 940px;
-    align-items: center;
+    align-items: stretch;
 }
 
 .cafeteria{
     border: 5px solid red;
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 42.5%;
 }
 
-.baños{
+.rio{
+    width: 15%;
     border: 5px solid blue;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.baños{
+    border: 5px solid green;
+    display: flex;
+    flex-direction: column;
     justify-content:center;
-    width: 50%;
+    align-items: flex-end;
+    width: 42.5%;
 }
 
 .iguales{
-    border: 5px solid black ;
+    /* border: 5px solid black ; */
     background: green;
     height: 100px;
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
 }
 .trio{
-    border: 5px solid black ;
+    /* border: 5px solid black ; */
     background: yellow;
     height: 100px;
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
 }
 .parejas{
-    border: 5px solid black ;
+    /* border: 5px solid black ; */
     background: orange;
     height: 100px;
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
 }
 .mvp{
-    border: 5px solid black ;
+    /* border: 5px solid black ; */
     background: cyan;
     height: 100px;
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
 }
 .dispares{
-    border: 5px solid black ;
+    /* border: 5px solid black ; */
     background: purple;
     height: 100px;
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
 }
 .unico{
-    border: 5px solid black ;
+    /* border: 5px solid black ; */
     background: maroon;
     height: 100px;
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -92,47 +108,78 @@ main{
 .top-section{
     display: flex;
     flex-direction: column;
-    border: 5px solid olivedrab;
+    /* border: 5px solid olivedrab; */
     width: 90%;
     height: 100%;
 }
 
-.campo-0, .campo-1, .campo-2, .campo-3, .campo-4, .campo-5{
-    width: 100%;
+.campo-0, .campo-1, .campo-2, .campo-4, .campo-5, .campo-6{
+    width: 95%;
     height: 100%;
-/*     border: 5px solid black; */
+    border-radius: 15px;
+    border: 5px solid black;
     background: white;
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 
+.campo-3{
+    width: 80%;
+    height: 70%;
+    border-radius: 15px;
+    border: 5px solid black;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
 .agregar-dino{
     display: flex;
-    width: 100%;
+    width: 95%;
     height: 50%;
+    margin: 5px;
     flex-direction: row;
     justify-content: center;
-    border: 1px solid black;
+/*     border: 1px solid black; */
 }
 
 .agregar-dino button{
-    width: 100%;
+    width: 20%;
     border-radius: 15px;
     margin: 0 5px;
 }
 
+#agregar-rio{
+    display: flex;
+    width: 95%;
+    height: 40%;
+    margin: 5px;
+    flex-direction: column;
+    align-items: center;
+}
+
+#agregar-rio button{
+    width: 50%;
+    height: 30%;
+    border-radius: 15px;
+    margin: 2px;
+}
+
 .confirmar-valor{
     display: flex;
-    width: 100%;
+    width: 95%;
     height: 50%;
     flex-direction: row;
-    justify-content: center;
-    border: 1px solid black;
+    justify-content: space-between;
+/*     border: 1px solid black; */
 }
 
 .confirmar-valor button{
-    width: 50%;
+    width: 45%;
     border-radius: 15px;
 }
 
@@ -172,7 +219,7 @@ footer{
 }
 
 .bloque-puntaje{
-    border: 2px solid green;
+/*     border: 2px solid green; */
     width: 50%;
     display: flex;
     justify-content: space-around;
