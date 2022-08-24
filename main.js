@@ -23,6 +23,15 @@ const IgEspino = document.querySelector(".iguales .agregar-dino .espinosaurio")
 const IgRex = document.querySelector(".iguales .agregar-dino .t-rex")
 const IgEstego = document.querySelector(".iguales .agregar-dino .estegosaurio")
 
+/// botones zona rio
+const RioContenedor = document.querySelector(".rio .agregar-dino")
+const RioTricera = document.querySelector(".rio .agregar-dino .triceratops")
+const RioApato = document.querySelector(".rio .agregar-dino .apatosaurio")
+const RioBraquio = document.querySelector(".rio .agregar-dino .braquiosaurio")
+const RioEspino = document.querySelector(".rio .agregar-dino .espinosaurio")
+const RioRex = document.querySelector(".rio .agregar-dino .t-rex")
+const RioEstego = document.querySelector(".rio .agregar-dino .estegosaurio")
+
 /// botones zona desiguales
 const DesContenedor = document.querySelector(".dispares .agregar-dino")
 const DesTricera = document.querySelector(".dispares .agregar-dino .triceratops")
@@ -41,7 +50,9 @@ const UniEspino = document.querySelector(".unico .agregar-dino .espinosaurio")
 const UniRex = document.querySelector(".unico .agregar-dino .t-rex")
 const UniEstego = document.querySelector(".unico .agregar-dino .estegosaurio")
 
+/// arrays de botones
 let IgArray = [IgTricera,IgApato,IgBraquio,IgEspino,IgRex,IgEstego]
+let RioArray = [RioTricera,RioApato,RioBraquio,RioEspino,RioRex,RioEstego]
 let DesArray = [DesTricera,DesApato,DesBraquio,DesEspino,DesRex,DesEstego]
 let UniArray = [UniTricera,UniApato,UniBraquio,UniEspino,UniRex,UniEstego]
 
@@ -58,10 +69,15 @@ function agregarDino(lugar,dino){
         }
         IgContenedor.appendChild(momentaneo)
         if (conjunto[0].length == 6){
-            console.log("Estoy lleno")
             IgArray[0].remove();
             IgContenedor.appendChild(nuevoBoton);
         }
+    }
+    if (lugar == 3 && conjunto[3].length == 6){
+        RioArray.forEach(function(slot){
+            slot.remove();
+        })
+        RioContenedor.appendChild(nuevoBoton);
     }
     if (lugar == 4){
         interruptor = true;
