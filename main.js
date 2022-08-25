@@ -23,6 +23,24 @@ const IgEspino = document.querySelector(".iguales .agregar-dino .espinosaurio")
 const IgRex = document.querySelector(".iguales .agregar-dino .t-rex")
 const IgEstego = document.querySelector(".iguales .agregar-dino .estegosaurio")
 
+/// botones zona trio
+const TrioContenedor = document.querySelector(".trio .agregar-dino")
+const TrioTricera = document.querySelector(".trio .agregar-dino .triceratops")
+const TrioApato = document.querySelector(".trio .agregar-dino .apatosaurio")
+const TrioBraquio = document.querySelector(".trio .agregar-dino .braquiosaurio")
+const TrioEspino = document.querySelector(".trio .agregar-dino .espinosaurio")
+const TrioRex = document.querySelector(".trio .agregar-dino .t-rex")
+const TrioEstego = document.querySelector(".trio .agregar-dino .estegosaurio")
+
+/// botones zona parejas
+const ParejasContenedor = document.querySelector(".parejas .agregar-dino")
+const ParejasTricera = document.querySelector(".parejas .agregar-dino .triceratops")
+const ParejasApato = document.querySelector(".parejas .agregar-dino .apatosaurio")
+const ParejasBraquio = document.querySelector(".parejas .agregar-dino .braquiosaurio")
+const ParejasEspino = document.querySelector(".parejas .agregar-dino .espinosaurio")
+const ParejasRex = document.querySelector(".parejas .agregar-dino .t-rex")
+const ParejasEstego = document.querySelector(".parejas .agregar-dino .estegosaurio")
+
 /// botones zona rio
 const RioContenedor = document.querySelector(".rio .agregar-dino")
 const RioTricera = document.querySelector(".rio .agregar-dino .triceratops")
@@ -52,6 +70,8 @@ const UniEstego = document.querySelector(".unico .agregar-dino .estegosaurio")
 
 /// arrays de botones
 let IgArray = [IgTricera,IgApato,IgBraquio,IgEspino,IgRex,IgEstego]
+let TrioArray = [TrioTricera,TrioApato,TrioBraquio,TrioEspino,TrioRex,TrioEstego]
+let ParejasArray = [ParejasTricera,ParejasApato,ParejasBraquio,ParejasEspino,ParejasRex,ParejasEstego]
 let RioArray = [RioTricera,RioApato,RioBraquio,RioEspino,RioRex,RioEstego]
 let DesArray = [DesTricera,DesApato,DesBraquio,DesEspino,DesRex,DesEstego]
 let UniArray = [UniTricera,UniApato,UniBraquio,UniEspino,UniRex,UniEstego]
@@ -63,15 +83,30 @@ function agregarDino(lugar,dino){
     conjunto[lugar].push(dinosaurios[dino]);
     console.log(conjunto);
     if(lugar == 0){
-        let momentaneo = IgArray[dino]
-        for (let i = 0; i < IgArray.length;i++){
-            IgArray[i].remove();
-        }
-        IgContenedor.appendChild(momentaneo)
-        if (conjunto[0].length == 6){
-            IgArray[0].remove();
+        if (conjunto[0].length == 1){
+            let momentaneo = IgArray[dino];
+            IgArray.forEach(function(slot){
+                slot.remove();
+            });
+            IgContenedor.appendChild(momentaneo);
+        }else if (conjunto[0].length == 6){
+            IgArray.forEach(function(slot){
+                slot.remove();
+            });
             IgContenedor.appendChild(nuevoBoton);
         }
+    }
+    if (lugar == 1 && conjunto[1].length == 6){
+        TrioArray.forEach(function(slot){
+            slot.remove();
+        })
+        TrioContenedor.appendChild(nuevoBoton);
+    }
+    if (lugar == 2 && conjunto[2].length == 6){
+        ParejasArray.forEach(function(slot){
+            slot.remove();
+        })
+        ParejasContenedor.appendChild(nuevoBoton);
     }
     if (lugar == 3 && conjunto[3].length == 6){
         RioArray.forEach(function(slot){
@@ -173,24 +208,46 @@ function calcularPuntajeIguales(iguales){
 }
 
 function calcularPuntajeTrio(trio){
-    let placeholder = null;
     let contador = 0;
-    let puntajeTrio = 0;
-    /* calculo de puntos en zona pares */
-    if (trio.length >= 1){
-        for(i=0;i<trio.length;i++){
-            if(placeholder == null){
-                placeholder = trio[i];
-                contador++
-            }else if(placeholder == trio[i]){
-                contador++
-            }
-        }
-        if (contador == 3){
-            puntajeTrio = 7;
-        }
+    let repetidos = {};
+    let valor1 = 0
+    let valor2 = 0
+    let valor3 = 0
+    let valor4 = 0
+    let valor5 = 0
+    let valor6 = 0
+
+    trio.forEach(function(numero){
+    repetidos[numero] = (repetidos[numero] || 0) + 1;
+    });
+
+    if (repetidos[dinosaurios[0]] > 1){
+        valor1 = repetidos[dinosaurios[0]]
     }
-    return puntajeTrio;
+    if (repetidos[dinosaurios[1]] > 1){
+        valor2 = repetidos[dinosaurios[1]]
+    }
+    if (repetidos[dinosaurios[2]] > 1){
+        valor3 = repetidos[dinosaurios[2]]
+    }
+    if (repetidos[dinosaurios[3]] > 1){
+        valor4 = repetidos[dinosaurios[3]]
+    }
+    if (repetidos[dinosaurios[4]] > 1){
+        valor5 = repetidos[dinosaurios[4]]
+    }
+    if (repetidos[dinosaurios[5]] > 1){
+        valor6 = repetidos[dinosaurios[5]]
+    }
+
+    contador += Math.floor(parseInt(valor1/3));
+    contador += Math.floor(parseInt(valor2/3));
+    contador += Math.floor(parseInt(valor3/3));
+    contador += Math.floor(parseInt(valor4/3));
+    contador += Math.floor(parseInt(valor5/3));
+    contador += Math.floor(parseInt(valor6/3));
+
+    return (contador*7);
 }
 
 function calcularPuntajeParejas(parejas){
@@ -237,8 +294,7 @@ function calcularPuntajeParejas(parejas){
 }
 
 function calcularPuntajeRio(rio){
-    puntos = rio.length;
-    return puntos
+    return puntos = rio.length
 }
 
 function calcularPuntajeMvp(mvp, aplicaValor){

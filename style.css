@@ -16,7 +16,8 @@ main{
 }
 
 .cafeteria{
-    border: 5px solid red;
+/*     border: 5px solid red; */
+    background: rgb(140, 70, 0);
     display: flex;
     flex-direction: column;
     width: 42.5%;
@@ -24,7 +25,7 @@ main{
 
 .rio{
     width: 15%;
-    border: 5px solid blue;
+    background-color: blue;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -32,7 +33,8 @@ main{
 }
 
 .baños{
-    border: 5px solid green;
+/*     border: 5px solid green; */
+    background: rgb(140, 70, 0);
     display: flex;
     flex-direction: column;
     justify-content:center;
@@ -42,7 +44,7 @@ main{
 
 .iguales{
     /* border: 5px solid black ; */
-    background: green;
+    background: rgb(0, 170, 0);
     height: 100px;
     width: 100%;
     display: flex;
@@ -52,7 +54,7 @@ main{
 }
 .trio{
     /* border: 5px solid black ; */
-    background: yellow;
+    background: rgb(0, 170, 0);
     height: 100px;
     width: 100%;
     display: flex;
@@ -62,7 +64,7 @@ main{
 }
 .parejas{
     /* border: 5px solid black ; */
-    background: orange;
+    background: rgb(140, 70, 0);
     height: 100px;
     width: 100%;
     display: flex;
@@ -72,7 +74,7 @@ main{
 }
 .mvp{
     /* border: 5px solid black ; */
-    background: cyan;
+    background: rgb(0, 170, 0);
     height: 100px;
     width: 100%;
     display: flex;
@@ -82,7 +84,7 @@ main{
 }
 .dispares{
     /* border: 5px solid black ; */
-    background: purple;
+    background: rgb(140, 70, 0);
     height: 100px;
     width: 100%;
     display: flex;
@@ -92,7 +94,7 @@ main{
 }
 .unico{
     /* border: 5px solid black ; */
-    background: maroon;
+    background: rgb(140, 70, 0);
     height: 100px;
     width: 100%;
     display: flex;
@@ -113,11 +115,27 @@ main{
     height: 100%;
 }
 
+.rio .top-section{
+    display: flex;
+    flex-direction: column;
+    /* border: 5px solid olivedrab; */
+    width: 90%;
+    height: 100%;
+/*     align-items: center;
+    justify-content: space-around; */
+}
+
+.separador{
+    width: 50px;
+    height: 50px;
+}
+
 .campo-0, .campo-1, .campo-2, .campo-4, .campo-5, .campo-6{
-    width: 95%;
+    width: 90%;
     height: 100%;
     border-radius: 15px;
     border: 5px solid black;
+    margin: 10px;
     background: white;
     display: flex;
     justify-content: space-around;
@@ -127,6 +145,7 @@ main{
 .campo-3{
     width: 80%;
     height: 70%;
+    margin: 10px;
     border-radius: 15px;
     border: 5px solid black;
     background: white;
@@ -171,14 +190,30 @@ main{
 
 .confirmar-valor{
     display: flex;
-    width: 95%;
+    width: 100%;
     height: 50%;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 /*     border: 1px solid black; */
 }
 
-.confirmar-valor button{
+.confirmar-valor p{
+    display: flex;
+    margin-top: 0px;
+    margin-bottom: 5px;
+    font-size: 10px;
+}
+
+.confirmar-botones{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+    margin-bottom: 3px;
+}
+
+.confirmar-botones button{
     width: 45%;
     border-radius: 15px;
 }
@@ -203,6 +238,12 @@ main{
 }
 .invalid{
     background: gray;
+}
+
+.campo-3 .dino-agregado{
+    width: 30%;
+    height: 10%;
+    border: 2px solid black;
 }
 
 .dino-agregado{
@@ -230,4 +271,67 @@ footer{
     display: flex;
 }
 
+@media screen and (max-width: 780px) {
+    body{
+        width: 760px;
+    }
 
+    main{
+        flex-direction: column;
+        align-items: center;
+        width: 760px;
+    }
+
+    .cafeteria, .rio, .baños{
+        width: 100%;
+    }
+
+    .rio{
+        height: 100px;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .campo-3{
+        width: 90%;
+        height: 100%;
+        border-radius: 15px;
+        border: 5px solid black;
+        margin: 10px;
+        background: white;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: row;
+    }
+
+    .campo-3 .dino-agregado{
+        width: 10%;
+        height: 20%;
+    }
+
+    #agregar-rio{
+        display: flex;
+        width: 95%;
+        height: 50%;
+        margin: 5px;
+        flex-direction: row;
+        justify-content: center;
+    }
+    #agregar-rio button{
+        width: 20%;
+        height: 90%;
+        border-radius: 15px;
+        margin: 5px;
+    }
+}
+
+@media screen and (max-width: 425px){
+    body{
+        width: 420px;
+    }
+
+    main{
+        width: 420px;
+    }
+}
