@@ -133,8 +133,6 @@ main{
 .campo-0, .campo-1, .campo-2, .campo-4, .campo-5, .campo-6{
     width: 90%;
     height: 100%;
-    border-radius: 15px;
-    border: 5px solid black;
     margin: 10px;
     background: white;
     display: flex;
@@ -142,12 +140,24 @@ main{
     align-items: center;
 }
 
+.campo-0, .campo-1, .campo-4{
+    border: 5px ridge red;
+    border-radius: 15px;
+    border-style: ridge;
+}
+
+.campo-2, .campo-5, .campo-6{
+    border: 5px ridge purple;
+    border-radius: 15px;
+    border-style:ridge;
+}
+
 .campo-3{
     width: 80%;
     height: 70%;
     margin: 10px;
     border-radius: 15px;
-    border: 5px solid black;
+    border: 5px ridge rgb(0, 0, 150);
     background: white;
     display: flex;
     flex-direction: column;
