@@ -25,7 +25,7 @@ main{
 
 .rio{
     width: 15%;
-    background-color: blue;
+    background-color: rgb(50, 50, 255);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -147,7 +147,7 @@ main{
 }
 
 .campo-2, .campo-5, .campo-6{
-    border: 5px ridge purple;
+    border: 5px ridge rgb(175, 0, 175);
     border-radius: 15px;
     border-style:ridge;
 }
@@ -157,7 +157,7 @@ main{
     height: 70%;
     margin: 10px;
     border-radius: 15px;
-    border: 5px ridge rgb(0, 0, 150);
+    border: 5px ridge rgb(0, 0, 255);
     background: white;
     display: flex;
     flex-direction: column;
