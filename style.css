@@ -260,6 +260,7 @@ main{
     width: 10%;
     height: 30%;
     border: 2px solid black;
+    cursor: pointer;
 }
 
 footer{

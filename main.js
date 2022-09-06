@@ -133,12 +133,22 @@ function agregarDino(lugar,dino){
 }
 
 function agregarDinoMapa(lugar, dino){
-    let nuevoCuadro = document.createElement("div");
+    let nuevoCuadro = document.createElement("button");
     nuevoCuadro.classList.add(dinosaurios[dino]);
     nuevoCuadro.classList.add("dino-agregado");
+    nuevoCuadro.classList.add(`camp${lugar}`)
+    nuevoCuadro.setAttribute("onclick", `eliminarDino(${lugar},${dino})`)
     let campo = document.getElementsByClassName(`campo-${lugar}`);
     campo[0].appendChild(nuevoCuadro)
     actualizar();
+}
+
+function eliminarDino(lugar, dino){
+    let dinoTarget = document.getElementsByClassName(`${dinosaurios[dino]} dino-agregado camp${lugar}`);
+    console.log(dinoTarget)
+    console.log(`${dinosaurios[dino]} dino-agregado camp${lugar}`)
+    dinoTarget[0].remove()
+    conjunto[lugar].pop(dinosaurios[dino]);
 }
 
 function agregarPuntaje(puntajeCalc){
