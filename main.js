@@ -145,9 +145,9 @@ function agregarDinoMapa(lugar, dino){
 
 function eliminarDino(lugar, dino){
     let dinoTarget = document.getElementsByClassName(`${dinosaurios[dino]} dino-agregado camp${lugar}`);
-    console.log(dinoTarget)
-    console.log(`${dinosaurios[dino]} dino-agregado camp${lugar}`)
-    dinoTarget[0].remove()
+    console.log(dinoTarget);
+    console.log(`${dinosaurios[dino]} dino-agregado camp${lugar}`);
+    dinoTarget[0].remove();
     conjunto[lugar].pop(dinosaurios[dino]);
 }
 
