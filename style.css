@@ -103,8 +103,8 @@ main{
     justify-content: center;
 }
 
-.icono.zona{
-    width: 10%;
+.icono-zona{
+    filter: drop-shadow(4px 4px 4px black);
 }
 
 .top-section{
@@ -138,6 +138,7 @@ main{
     display: flex;
     justify-content: space-around;
     align-items: center;
+    filter: drop-shadow(2px 2px 2px black);
 }
 
 .campo-0, .campo-1, .campo-4{
@@ -164,6 +165,7 @@ main{
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
+    filter: drop-shadow(2px 2px 2px black);
 }
 
 .agregar-dino{
@@ -280,6 +282,7 @@ footer{
 .cartel{
     width: 50px;
     display: flex;
+    filter: drop-shadow(4px 4px 4px #000000);
 }
 
 @media screen and (max-width: 780px) {
