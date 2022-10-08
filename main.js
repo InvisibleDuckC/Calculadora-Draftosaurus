@@ -10,6 +10,7 @@ const dinosaurios = ["triceratops","apatosaurio","braquiosaurio","espinosaurio",
 var aplicaValor = false;
 let conjunto = [[],[],[],[],[],[],[]];
 let interruptor = false;
+let isEliminated = false;
 
 const botonesAgregar = document.getElementById("agregar-mvp");
 const botonesConfirmar = document.getElementsByClassName("confirmar-valor");
@@ -92,7 +93,9 @@ function agregarDino(lugar,dino){
 /*     console.log(conjunto); */
     agregarDinoMapa(lugar,dino);
     buttonControl(lugar, dino);
-    controladorBotones();
+    if(lugar == 4){
+        controladorBotones();
+    }
 }
 
 function buttonControl(lugar, dino){
@@ -109,7 +112,7 @@ function buttonControl(lugar, dino){
         IgArray[dino].classList.add(dinosaurios[dino])
         IgArray[dino].classList.remove("invalid");
         IgArray[dino].setAttribute("onclick", `agregarDino(${lugar},${dino})`)
-        if (conjunto[0].length == 0){
+        if (conjunto[lugar].length == 0){
             for(let din in dinosaurios){
                 console.log(`estamos en el bucle: ${din}`)
                 IgArray[din].classList.add(dinosaurios[din])
@@ -117,39 +120,97 @@ function buttonControl(lugar, dino){
                 IgArray[din].classList.remove("invalid");
             }
         }
+        if (conjunto[lugar].length == 6){
+            for(let din in dinosaurios){
+                IgArray[din].classList.remove(dinosaurios[din])
+                IgArray[din].removeAttribute("onclick")
+                IgArray[din].classList.add("invalid");
+            }
+        }
     }
-    if (lugar == 1 && conjunto[1].length == 6){
-        TrioArray.forEach(function(slot){
-            slot.remove();
-        })
-        TrioContenedor.appendChild(nuevoBoton);
+    if (lugar == 1){
+        if(conjunto[lugar].length == 6){
+            for(let din in dinosaurios){
+                TrioArray[din].classList.remove(dinosaurios[din])
+                TrioArray[din].removeAttribute("onclick")
+                TrioArray[din].classList.add("invalid");
+            }
+        }
+        if (conjunto[lugar].length == 0){
+            for(let din in dinosaurios){
+                TrioArray[din].classList.add(dinosaurios[din])
+                TrioArray[din].setAttribute("onclick", `agregarDino(${lugar},${din})`)
+                TrioArray[din].classList.remove("invalid");
+            }
+        }
+        
     }
-    if (lugar == 2 && conjunto[2].length == 6){
-        ParejasArray.forEach(function(slot){
-            slot.remove();
-        })
-        ParejasContenedor.appendChild(nuevoBoton);
+    if (lugar == 2){
+        if(conjunto[lugar].length == 6){
+            for(let din in dinosaurios){
+                ParejasArray[din].classList.remove(dinosaurios[din])
+                ParejasArray[din].removeAttribute("onclick")
+                ParejasArray[din].classList.add("invalid");
+            }
+        }
+        if (conjunto[lugar].length == 0){
+            for(let din in dinosaurios){
+                ParejasArray[din].classList.add(dinosaurios[din])
+                ParejasArray[din].setAttribute("onclick", `agregarDino(${lugar},${din})`)
+                ParejasArray[din].classList.remove("invalid");
+            }
+        }
     }
-    if (lugar == 3 && conjunto[3].length == 6){
-        RioArray.forEach(function(slot){
-            slot.remove();
-        })
-        RioContenedor.appendChild(nuevoBoton);
+    if (lugar == 3){
+        if(conjunto[lugar].length == 6){
+            for(let din in dinosaurios){
+                RioArray[din].classList.remove(dinosaurios[din])
+                RioArray[din].removeAttribute("onclick")
+                RioArray[din].classList.add("invalid");
+            }
+        }
+        if (conjunto[lugar].length == 0){
+            for(let din in dinosaurios){
+                RioArray[din].classList.add(dinosaurios[din])
+                RioArray[din].setAttribute("onclick", `agregarDino(${lugar},${din})`)
+                RioArray[din].classList.remove("invalid");
+            }
+        }
     }
     if (lugar == 4){
         interruptor = true;
     }
     if(lugar == 5){
-        DesArray[dino].remove();
-        DesContenedor.appendChild(nuevoBoton)
+        DesArray[dino].classList.remove(dinosaurios[dino])
+        DesArray[dino].removeAttribute("onclick")
+        DesArray[dino].classList.add("invalid");
+        if(isEliminated){
+            DesArray[dino].classList.add(dinosaurios[dino])
+            DesArray[dino].setAttribute("onclick", `agregarDino(${lugar},${dino})`)
+            DesArray[dino].classList.remove("invalid");
+        }
     }
     if(lugar == 6){
-        for (let i = 0; i < UniArray.length;i++){
-            UniArray[i].remove();
+        for(let din in dinosaurios){
+            UniArray[din].classList.remove(dinosaurios[din])
+            UniArray[din].removeAttribute("onclick")
+            UniArray[din].classList.add("invalid");
         }
-        UniContenedor.appendChild(nuevoBoton)
+        if (conjunto[lugar].length == 0){
+            for(let din in dinosaurios){
+                UniArray[din].classList.add(dinosaurios[din])
+                UniArray[din].setAttribute("onclick", `agregarDino(${lugar},${din})`)
+                UniArray[din].classList.remove("invalid");
+            }
+        }
+        if (conjunto[lugar].length == 1){
+            for(let din in dinosaurios){
+                UniArray[din].classList.remove(dinosaurios[din])
+                UniArray[din].removeAttribute("onclick")
+                UniArray[din].classList.add("invalid");
+            }
+        }
     }
-    console.log(`lugar: ${lugar} conjunto.length: ${conjunto[lugar].length} salida funcion`)
 }
 
 function agregarDinoMapa(lugar, dino){
@@ -164,12 +225,18 @@ function agregarDinoMapa(lugar, dino){
 }
 
 function eliminarDino(lugar, dino){
+    isEliminated = true;
     console.log(`lugar: ${lugar} conjunto.length: ${conjunto[lugar].length} entrada eliminar`)
     let dinoTarget = document.getElementsByClassName(`${dinosaurios[dino]} dino-agregado camp${lugar}`);
     dinoTarget[0].remove();
     conjunto[lugar].pop(dinosaurios[dino]);
+    if(lugar == 4){
+        interruptor = false;
+        controladorBotones();
+    }
     buttonControl(lugar, dino);
     actualizar();
+    isEliminated = false;
 }
 
 function agregarPuntaje(puntajeCalc){
