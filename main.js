@@ -77,13 +77,31 @@ let DesArray = [DesTricera,DesApato,DesBraquio,DesEspino,DesRex,DesEstego]
 let UniArray = [UniTricera,UniApato,UniBraquio,UniEspino,UniRex,UniEstego]
 
 
+function buttonCreator(lugar, dino){
+    /* (".unico .agregar-dino .estegosaurio") */
+    let newbutton = document.createElement("button");
+    newbutton.classList.add(dinosaurios[dino]);
+    newbutton.setAttribute("onclick", `agregarDino(${lugar},${dino})`)
+    return newbutton
+}
+
+
 function agregarDino(lugar,dino){
+    console.log(`lugar: ${lugar} conjunto.length: ${conjunto[lugar].length} entrada agregar`)
+    conjunto[lugar].push(dinosaurios[dino]);
+/*     console.log(conjunto); */
+    agregarDinoMapa(lugar,dino);
+    buttonControl(lugar, dino);
+    controladorBotones();
+}
+
+function buttonControl(lugar, dino){
+    console.log(`lugar: ${lugar} conjunto.length: ${conjunto[lugar].length} entrada funcion`)
     let nuevoBoton = document.createElement("button");
     nuevoBoton.classList.add("invalid");
-    conjunto[lugar].push(dinosaurios[dino]);
-    console.log(conjunto);
     if(lugar == 0){
         if (conjunto[0].length == 1){
+            console.log("se inicio la primera condicion")
             let momentaneo = IgArray[dino];
             IgArray.forEach(function(slot){
                 slot.remove();
@@ -94,6 +112,15 @@ function agregarDino(lugar,dino){
                 slot.remove();
             });
             IgContenedor.appendChild(nuevoBoton);
+        }else if (conjunto[0].length == 0){
+            console.log("se inicio la tercera condicion")
+            IgArray.forEach(function(slot){
+                slot.remove();
+            });
+            for (let dino in dinosaurios) {
+                IgContenedor.appendChild(buttonCreator(lugar,dino));
+            }
+            IgArray = [IgTricera,IgApato,IgBraquio,IgEspino,IgRex,IgEstego]
         }
     }
     if (lugar == 1 && conjunto[1].length == 6){
@@ -127,9 +154,7 @@ function agregarDino(lugar,dino){
         }
         UniContenedor.appendChild(nuevoBoton)
     }
-    agregarDinoMapa(lugar,dino)
-    controladorBotones();
-
+    console.log(`lugar: ${lugar} conjunto.length: ${conjunto[lugar].length} salida funcion`)
 }
 
 function agregarDinoMapa(lugar, dino){
@@ -144,11 +169,12 @@ function agregarDinoMapa(lugar, dino){
 }
 
 function eliminarDino(lugar, dino){
+    console.log(`lugar: ${lugar} conjunto.length: ${conjunto[lugar].length} entrada eliminar`)
     let dinoTarget = document.getElementsByClassName(`${dinosaurios[dino]} dino-agregado camp${lugar}`);
-    console.log(dinoTarget);
-    console.log(`${dinosaurios[dino]} dino-agregado camp${lugar}`);
     dinoTarget[0].remove();
     conjunto[lugar].pop(dinosaurios[dino]);
+    buttonControl(lugar, dino);
+    actualizar();
 }
 
 function agregarPuntaje(puntajeCalc){
@@ -309,7 +335,7 @@ function calcularPuntajeRio(rio){
 
 function calcularPuntajeMvp(mvp, aplicaValor){
     let puntajeMvp = 0;
-    console.log(mvp)
+/*     console.log(mvp) */
 
     if(mvp.length >= 1){
         if (aplicaValor){
@@ -361,6 +387,8 @@ function calcularPuntajeUnico(conjunto, unico){
 
 function actualizar(){
     agregarPuntaje(calcularPuntaje(conjunto));
+    
+    
 }
 
 function cambiarBool(asignacion){
