@@ -100,27 +100,22 @@ function buttonControl(lugar, dino){
     let nuevoBoton = document.createElement("button");
     nuevoBoton.classList.add("invalid");
     if(lugar == 0){
-        if (conjunto[0].length == 1){
-            console.log("se inicio la primera condicion")
-            let momentaneo = IgArray[dino];
-            IgArray.forEach(function(slot){
-                slot.remove();
-            });
-            IgContenedor.appendChild(momentaneo);
-        }else if (conjunto[0].length == 6){
-            IgArray.forEach(function(slot){
-                slot.remove();
-            });
-            IgContenedor.appendChild(nuevoBoton);
-        }else if (conjunto[0].length == 0){
-            console.log("se inicio la tercera condicion")
-            IgArray.forEach(function(slot){
-                slot.remove();
-            });
-            for (let dino in dinosaurios) {
-                IgContenedor.appendChild(buttonCreator(lugar,dino));
+        console.log("se inicio la primera condicion")
+        for(let din in dinosaurios){
+            IgArray[din].classList.remove(dinosaurios[din])
+            IgArray[din].removeAttribute("onclick")
+            IgArray[din].classList.add("invalid");
+        }
+        IgArray[dino].classList.add(dinosaurios[dino])
+        IgArray[dino].classList.remove("invalid");
+        IgArray[dino].setAttribute("onclick", `agregarDino(${lugar},${dino})`)
+        if (conjunto[0].length == 0){
+            for(let din in dinosaurios){
+                console.log(`estamos en el bucle: ${din}`)
+                IgArray[din].classList.add(dinosaurios[din])
+                IgArray[din].setAttribute("onclick", `agregarDino(${lugar},${din})`)
+                IgArray[din].classList.remove("invalid");
             }
-            IgArray = [IgTricera,IgApato,IgBraquio,IgEspino,IgRex,IgEstego]
         }
     }
     if (lugar == 1 && conjunto[1].length == 6){
