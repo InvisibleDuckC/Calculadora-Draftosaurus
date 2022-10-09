@@ -88,6 +88,7 @@ function agregarDino(lugar,dino){
 }
 
 function buttonControl(lugar, dino){
+    // Iguales
     if(lugar == 0){
         console.log("se inicio la primera condicion")
         for(let din in dinosaurios){
@@ -114,8 +115,9 @@ function buttonControl(lugar, dino){
             }
         }
     }
+    // Trio
     if (lugar == 1){
-        if(conjunto[lugar].length == 6){
+        if(conjunto[lugar].length == 3){
             for(let din in dinosaurios){
                 TrioArray[din].classList.remove(dinosaurios[din])
                 TrioArray[din].removeAttribute("onclick")
@@ -131,6 +133,7 @@ function buttonControl(lugar, dino){
         }
         
     }
+    // Parejas
     if (lugar == 2){
         if(conjunto[lugar].length == 6){
             for(let din in dinosaurios){
@@ -147,6 +150,7 @@ function buttonControl(lugar, dino){
             }
         }
     }
+    // Rio
     if (lugar == 3){
         if(conjunto[lugar].length == 6){
             for(let din in dinosaurios){
@@ -163,9 +167,11 @@ function buttonControl(lugar, dino){
             }
         }
     }
+    // MVP
     if (lugar == 4){
         interruptor = true;
     }
+    // Desiguales
     if(lugar == 5){
         DesArray[dino].classList.remove(dinosaurios[dino])
         DesArray[dino].removeAttribute("onclick")
@@ -176,6 +182,7 @@ function buttonControl(lugar, dino){
             DesArray[dino].classList.remove("invalid");
         }
     }
+    // Unico
     if(lugar == 6){
         for(let din in dinosaurios){
             UniArray[din].classList.remove(dinosaurios[din])
@@ -264,10 +271,8 @@ function calcularPuntajeRex(conjunto){
     let rexCounter = 0;
     for (numconj=0;numconj<conjunto.length;numconj++){
         if(conjunto[numconj].includes(dinosaurios[4]) && numconj != 3){
-            console.log(`encontramos un rex :D en lugar ${numconj}`)
             rexCounter += 1
-        }
-        
+        }  
     }
     return rexCounter
 }
@@ -306,42 +311,21 @@ function calcularPuntajeIguales(iguales){
 function calcularPuntajeTrio(trio){
     let contador = 0;
     let repetidos = {};
-    let valor1 = 0
-    let valor2 = 0
-    let valor3 = 0
-    let valor4 = 0
-    let valor5 = 0
-    let valor6 = 0
+    let valores = [0,0,0,0,0,0]
 
     trio.forEach(function(numero){
     repetidos[numero] = (repetidos[numero] || 0) + 1;
     });
 
-    if (repetidos[dinosaurios[0]] > 1){
-        valor1 = repetidos[dinosaurios[0]]
-    }
-    if (repetidos[dinosaurios[1]] > 1){
-        valor2 = repetidos[dinosaurios[1]]
-    }
-    if (repetidos[dinosaurios[2]] > 1){
-        valor3 = repetidos[dinosaurios[2]]
-    }
-    if (repetidos[dinosaurios[3]] > 1){
-        valor4 = repetidos[dinosaurios[3]]
-    }
-    if (repetidos[dinosaurios[4]] > 1){
-        valor5 = repetidos[dinosaurios[4]]
-    }
-    if (repetidos[dinosaurios[5]] > 1){
-        valor6 = repetidos[dinosaurios[5]]
+    for(i in valores){
+        if(repetidos[dinosaurios[i]] > 1){
+            valores[i] = repetidos[dinosaurios[i]]
+        }
     }
 
-    contador += Math.floor(parseInt(valor1/3));
-    contador += Math.floor(parseInt(valor2/3));
-    contador += Math.floor(parseInt(valor3/3));
-    contador += Math.floor(parseInt(valor4/3));
-    contador += Math.floor(parseInt(valor5/3));
-    contador += Math.floor(parseInt(valor6/3));
+    for(i in valores){
+        contador += Math.floor(parseInt(valores[i]/3));
+    }
 
     return (contador*7);
 }
@@ -349,12 +333,6 @@ function calcularPuntajeTrio(trio){
 function calcularPuntajeParejas(parejas){
     let contador = 0;
     let repetidos = {};
-    let valor1 = 0
-    let valor2 = 0
-    let valor3 = 0
-    let valor4 = 0
-    let valor5 = 0
-    let valor6 = 0
     let valores = [0,0,0,0,0,0]
 
     parejas.forEach(function(numero){
@@ -367,34 +345,9 @@ function calcularPuntajeParejas(parejas){
         }
     }
 
-    /* if (repetidos[dinosaurios[0]] > 1){
-        valor1 = repetidos[dinosaurios[0]]
-    }
-    if (repetidos[dinosaurios[1]] > 1){
-        valor2 = repetidos[dinosaurios[1]]
-    }
-    if (repetidos[dinosaurios[2]] > 1){
-        valor3 = repetidos[dinosaurios[2]]
-    }
-    if (repetidos[dinosaurios[3]] > 1){
-        valor4 = repetidos[dinosaurios[3]]
-    }
-    if (repetidos[dinosaurios[4]] > 1){
-        valor5 = repetidos[dinosaurios[4]]
-    }
-    if (repetidos[dinosaurios[5]] > 1){
-        valor6 = repetidos[dinosaurios[5]]
-    } */
-
     for(i in valores){
         contador += Math.floor(parseInt(valores[i]/2));
     }
-    
-    /* contador += Math.floor(parseInt(valores[]/2));
-    contador += Math.floor(parseInt(valores[]/2));
-    contador += Math.floor(parseInt(valores[]/2));
-    contador += Math.floor(parseInt(valores[]/2));
-    contador += Math.floor(parseInt(valores[]/2)); */
 
     return (contador*5);
 }
