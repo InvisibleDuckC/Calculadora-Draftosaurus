@@ -282,7 +282,7 @@ main{
 }
 
 .cartel{
-    margin-bottom: 5px;
+    margin: 5px;
     width: 50px;
     display: flex;
     filter: drop-shadow(4px 4px 4px #000000);
