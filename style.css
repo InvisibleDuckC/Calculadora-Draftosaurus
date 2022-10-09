@@ -7,8 +7,9 @@ body{
 }
 
 main{
+    margin-left: 5px;
     display: flex;
-    border: 5px solid black;
+/*     border: 5px solid black; */
     flex-direction: row;
     justify-content: center;
     width: 940px;
@@ -265,7 +266,8 @@ main{
     cursor: pointer;
 }
 
-footer{
+.footer{
+    margin-top: 10px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -280,6 +282,7 @@ footer{
 }
 
 .cartel{
+    margin-bottom: 5px;
     width: 50px;
     display: flex;
     filter: drop-shadow(4px 4px 4px #000000);

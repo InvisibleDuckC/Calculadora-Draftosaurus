@@ -9,6 +9,7 @@ const nameConjunto = ["iguales","trio","parejas","rio","mvp","dispares","unico"]
 const dinosaurios = ["triceratops","apatosaurio","braquiosaurio","espinosaurio","t-rex","estegosaurio"];
 var aplicaValor = false;
 let conjunto = [[],[],[],[],[],[],[]];
+let conjuntoRex = [false,false,false,false,false,false,false];
 let interruptor = false;
 let isEliminated = false;
 
@@ -77,20 +78,8 @@ let RioArray = [RioTricera,RioApato,RioBraquio,RioEspino,RioRex,RioEstego]
 let DesArray = [DesTricera,DesApato,DesBraquio,DesEspino,DesRex,DesEstego]
 let UniArray = [UniTricera,UniApato,UniBraquio,UniEspino,UniRex,UniEstego]
 
-
-function buttonCreator(lugar, dino){
-    /* (".unico .agregar-dino .estegosaurio") */
-    let newbutton = document.createElement("button");
-    newbutton.classList.add(dinosaurios[dino]);
-    newbutton.setAttribute("onclick", `agregarDino(${lugar},${dino})`)
-    return newbutton
-}
-
-
 function agregarDino(lugar,dino){
-    console.log(`lugar: ${lugar} conjunto.length: ${conjunto[lugar].length} entrada agregar`)
     conjunto[lugar].push(dinosaurios[dino]);
-/*     console.log(conjunto); */
     agregarDinoMapa(lugar,dino);
     buttonControl(lugar, dino);
     if(lugar == 4){
@@ -99,9 +88,6 @@ function agregarDino(lugar,dino){
 }
 
 function buttonControl(lugar, dino){
-    console.log(`lugar: ${lugar} conjunto.length: ${conjunto[lugar].length} entrada funcion`)
-    let nuevoBoton = document.createElement("button");
-    nuevoBoton.classList.add("invalid");
     if(lugar == 0){
         console.log("se inicio la primera condicion")
         for(let din in dinosaurios){
@@ -226,7 +212,6 @@ function agregarDinoMapa(lugar, dino){
 
 function eliminarDino(lugar, dino){
     isEliminated = true;
-    console.log(`lugar: ${lugar} conjunto.length: ${conjunto[lugar].length} entrada eliminar`)
     let dinoTarget = document.getElementsByClassName(`${dinosaurios[dino]} dino-agregado camp${lugar}`);
     dinoTarget[0].remove();
     conjunto[lugar].pop(dinosaurios[dino]);
@@ -268,10 +253,23 @@ function calcularPuntaje(conjunto){
     let puntMvp = calcularPuntajeMvp(mvp, aplicaValor);
     let puntDispares = calcularPuntajeDispares(dispares);
     let puntUnico = calcularPuntajeUnico(conjunto, unico);
+    let puntRex = calcularPuntajeRex(conjunto);
 
-    let puntajeTotal = puntPares+puntTrio+puntParejas+puntMvp+puntDispares+puntUnico+puntRio;
+    let puntajeTotal = puntPares+puntTrio+puntParejas+puntMvp+puntDispares+puntUnico+puntRio+puntRex;
     
     return puntajeTotal;
+}
+
+function calcularPuntajeRex(conjunto){
+    let rexCounter = 0;
+    for (numconj=0;numconj<conjunto.length;numconj++){
+        if(conjunto[numconj].includes(dinosaurios[4]) && numconj != 3){
+            console.log(`encontramos un rex :D en lugar ${numconj}`)
+            rexCounter += 1
+        }
+        
+    }
+    return rexCounter
 }
 
 function calcularPuntajeIguales(iguales){
@@ -357,12 +355,19 @@ function calcularPuntajeParejas(parejas){
     let valor4 = 0
     let valor5 = 0
     let valor6 = 0
+    let valores = [0,0,0,0,0,0]
 
     parejas.forEach(function(numero){
     repetidos[numero] = (repetidos[numero] || 0) + 1;
     });
 
-    if (repetidos[dinosaurios[0]] > 1){
+    for(i in valores){
+        if(repetidos[dinosaurios[i]] > 1){
+            valores[i] = repetidos[dinosaurios[i]]
+        }
+    }
+
+    /* if (repetidos[dinosaurios[0]] > 1){
         valor1 = repetidos[dinosaurios[0]]
     }
     if (repetidos[dinosaurios[1]] > 1){
@@ -379,14 +384,17 @@ function calcularPuntajeParejas(parejas){
     }
     if (repetidos[dinosaurios[5]] > 1){
         valor6 = repetidos[dinosaurios[5]]
-    }
+    } */
 
-    contador += Math.floor(parseInt(valor1/2));
-    contador += Math.floor(parseInt(valor2/2));
-    contador += Math.floor(parseInt(valor3/2));
-    contador += Math.floor(parseInt(valor4/2));
-    contador += Math.floor(parseInt(valor5/2));
-    contador += Math.floor(parseInt(valor6/2));
+    for(i in valores){
+        contador += Math.floor(parseInt(valores[i]/2));
+    }
+    
+    /* contador += Math.floor(parseInt(valores[]/2));
+    contador += Math.floor(parseInt(valores[]/2));
+    contador += Math.floor(parseInt(valores[]/2));
+    contador += Math.floor(parseInt(valores[]/2));
+    contador += Math.floor(parseInt(valores[]/2)); */
 
     return (contador*5);
 }
@@ -397,7 +405,6 @@ function calcularPuntajeRio(rio){
 
 function calcularPuntajeMvp(mvp, aplicaValor){
     let puntajeMvp = 0;
-/*     console.log(mvp) */
 
     if(mvp.length >= 1){
         if (aplicaValor){
@@ -449,16 +456,12 @@ function calcularPuntajeUnico(conjunto, unico){
 
 function actualizar(){
     agregarPuntaje(calcularPuntaje(conjunto));
-    
-    
 }
 
 function cambiarBool(asignacion){
     aplicaValor = asignacion;
-    console.log(aplicaValor);
     actualizar();
     return aplicaValor;
-/*     calcularPuntajeMvp(mvp, aplicaValor) */
 }
 
 function ocultarBotonesDino(){
